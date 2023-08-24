@@ -15,5 +15,26 @@ import base64
 
 dbConnection = None
 
+# Connection to MongoDB
+if Keys.strConnection != None:
+    mongoConnect = MongoClient(Keys.strConnection)
+    Keys.dbConnection = mongoConnect[Keys.strDBConection]
+    dbConnection = Keys.dbConnection
+
+def fnGetAllPalabras():
+    try:
+        jsnProyection = {'_id': 0}
+        cursor = dbConnection.palabras.find({}, jsnProyection)
+        objResult = []
+
+        for document in cursor:
+            objResult.append(document)
+            print(document)
+
+        return {'intStatus': 200, 'strAnswer': objResult}
+    except Exception as e:
+        Helpers.PrintException()
+        return jsonify(ResponseMessages.err500)
+
 
 
