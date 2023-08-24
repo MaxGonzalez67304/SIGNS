@@ -5,15 +5,17 @@ from bson.objectid import ObjectId
 import os
 from os import path
 
+import logging
+
 import Apis.GlobalInfo.ResponseMessages as ResponseMessages
 
 import Apis.GlobalInfo.Keys as Keys
 
-import Apis.GlobalInfo.Helpers as Helpers
-
 import base64
 
 dbConnection = None
+
+PROYECTION = {'_id': 0}
 
 # Connection to MongoDB
 if Keys.strConnection != None:
@@ -23,18 +25,23 @@ if Keys.strConnection != None:
 
 def fnGetAllPalabras():
     try:
-        jsnProyection = {'_id': 0}
-        cursor = dbConnection.palabras.find({}, jsnProyection)
-        objResult = []
+        cursor = dbConnection.palabras.find({}, PROYECTION)
 
-        for document in cursor:
-            objResult.append(document)
-            print(document)
+        objResult = [document for document in cursor]
 
         return {'intStatus': 200, 'strAnswer': objResult}
-    except Exception as e:
-        Helpers.PrintException()
-        return jsonify(ResponseMessages.err500)
+    except Exception as error:
+        logging.exception(error)
+        return jsonify(ResponseMessages.err500), 500
 
+def fnGetPalabraById(idPalabra):
+    try:
+        jsnQuery = {"idPalabra": idPalabra}
+        cursor = dbConnection.palabras.find_one(jsnQuery, PROYECTION)
+        objResult = cursor
 
+        return {'intStatus': 200, 'strAnswer': objResult}
+    except Exception as error:
+        logging.exception(error)
+        return jsonify(ResponseMessages.err500), 500
 

@@ -2,11 +2,10 @@ from flask_cors import CORS, cross_origin
 
 import os
 import sys
+import logging
 import Apis.Functions as callMethod
 
 import Apis.GlobalInfo.Keys as Keys
-
-import Apis.GlobalInfo.Helpers as Helpers
 
 import Apis.GlobalInfo.ResponseMessages as ResponseMessages
 
@@ -19,11 +18,24 @@ CORS(app)
 def GetAllPalabras():
     try:
         objResult = callMethod.fnGetAllPalabras()
-        return jsonify(objResult)
-    except Exception as e:
-        Helpers.PrintException()
-        return jsonify(ResponseMessages.err500)
+        if objResult is None or len(objResult) == 0:
+            return jsonify(ResponseMessages.err404), 404
 
+        return jsonify(objResult)
+    except Exception as error:
+        logging.exception(error)
+        return jsonify(ResponseMessages.err500), 500
+
+@app.route('/api/general/GetPalabraById/<int:idPalabra>', methods=['GET'])
+def GetPalabraById(idPalabra):
+    try:
+        objResult = callMethod.fnGetPalabraById(idPalabra)
+        if objResult is None or len(objResult) == 0:
+            return jsonify(ResponseMessages.err404), 404
+        return jsonify(objResult)
+    except Exception as error:
+        logging.exception(error)
+        return jsonify(ResponseMessages.err500), 500
 
 
 
