@@ -21,6 +21,7 @@ if Keys.strConnection != None:
     Keys.dbConnection = mongoConnect[Keys.strDBConection]
     dbConnection = Keys.dbConnection
 
+
 def fnGetAllPalabras():
     """
     Recupera todas las palabras en la base de datos.
@@ -36,8 +37,9 @@ def fnGetAllPalabras():
 
         return {'intStatus': 200, 'strAnswer': objResult}
     except Exception as error:
-        logging.exception("Error en fnGetAllPalabras: {}".format(error))
+        logging.exception("Error en fnGetAllPalabras: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
+
 
 def fnGetPalabraByNombre(palabra):
     """
@@ -60,8 +62,9 @@ def fnGetPalabraByNombre(palabra):
 
         return {'intStatus': http.HTTPStatus.OK, 'strAnswer': objResult}
     except Exception as error:
-        logging.exception("Error en fnGetPalabraByNombre: {}".format(error))
+        logging.exception("Error en fnGetPalabraByNombre: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
+
 
 def fnPostPalabra(strPalabra, strVideo):
     """
@@ -84,8 +87,9 @@ def fnPostPalabra(strPalabra, strVideo):
 
         return {'intStatus': 200, 'strAnswer': "Palabra insertada correctamente"}
     except Exception as error:
-        logging.exception("Error en fnPostPalabra: {}".format(error))
+        logging.exception("Error en fnPostPalabra: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
+
 
 def fnUpdatePalabraById(objectId, strPalabra, strVideo):
     """
@@ -110,5 +114,32 @@ def fnUpdatePalabraById(objectId, strPalabra, strVideo):
 
         return {'intStatus': 200, 'strAnswer': "Palabra actualizada correctamente"}
     except Exception as error:
-        logging.exception("Error en fnUpdatePalabra: {}".format(error))
+        logging.exception("Error en fnUpdatePalabra: %s", error)
+        return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
+
+
+def fnDeletePalabraById(objectId):
+    """
+    Elimina una palabra y su respectivo video en la base de datos.
+
+    Parámetros:
+    - objectId (string): El id de la palabra a eliminar.
+
+    Returns:
+    - intStatus: Estado de la petición HTTP exitosa.
+    - strAnswer: Mensaje de información eliminada correctamente.
+    """
+    try:
+        if not ObjectId.is_valid(objectId):
+            return jsonify(ResponseMessages.err400), http.HTTPStatus.BAD_REQUEST
+
+        jsnQuery = {"_id": ObjectId(objectId)}
+        cursor = dbConnection.palabras.delete_one(jsnQuery)
+
+        if cursor.deleted_count == 0 or not cursor:
+            return jsonify(ResponseMessages.err404), http.HTTPStatus.NOT_FOUND
+
+        return {'intStatus': 200, 'strAnswer': "Palabra eliminada correctamente"}
+    except Exception as error:
+        logging.exception("Error en fnDeletePalabra: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR

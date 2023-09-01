@@ -15,8 +15,9 @@ from flask import Flask, jsonify, request, Response
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route('/api/general/getAllPalabras', methods=['GET'])
-def GetAllPalabras():
+def GetAllPalabras() -> jsonify:
     """
     Recupera todos los datos de la colección 'palabras' en la base de datos.
 
@@ -35,12 +36,12 @@ def GetAllPalabras():
 
         return jsonify(objResult)
     except Exception as error:
-        logging.exception("Error en GetAllPalabras: {}".format(error))
+        logging.exception("Error en GetAllPalabras: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @app.route('/api/general/getPalabraByNombre/<string:palabra>', methods=['GET'])
-def GetPalabraByNombre(palabra):
+def GetPalabraByNombre(palabra) -> jsonify:
     """
     Recupera una palabra en base a su nombre.
 
@@ -66,12 +67,12 @@ def GetPalabraByNombre(palabra):
 
         return jsonify(objResult)
     except Exception as error:
-        logging.exception("Error en GetPalabraById: {}".format(error))
+        logging.exception("Error en GetPalabraById: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @app.route('/api/general/postPalabra', methods=['POST'])
-def PostPalabra():
+def PostPalabra() -> jsonify:
     """
     Agrega una palabra y un video a la base de datos.
 
@@ -98,12 +99,12 @@ def PostPalabra():
 
         return jsonify(objResult)
     except Exception as error:
-        logging.exception("Error en PostPalabra: {}".format(error))
+        logging.exception("Error en PostPalabra: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @app.route('/api/general/updatePalabraById/<string:_id>', methods=['PUT'])
-def updatePalabraById(_id):
+def updatePalabraById(_id) -> jsonify:
     """
     Actualiza una palabra en base a su id.
 
@@ -133,7 +134,38 @@ def updatePalabraById(_id):
 
         return jsonify(objResult)
     except Exception as error:
-        logging.exception("Error en updatePalabraById: {}".format(error))
+        logging.exception("Error en updatePalabraById: %s", error)
+        return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
+
+
+@app.route('/api/general/deletePalabraById/<string:_id>', methods=['DELETE'])
+def deletePalabraById(_id) -> jsonify:
+    """
+    Elimina una palabra en base a su id.
+
+    Parámetros:
+    - _id (string): El id de la palabra a eliminar.
+
+    Returns:
+    - objResult: El objeto JSON recibido de fnDeletePalabraById.
+
+    Raises:
+    - 400 Bad Request: Si el campo '_id' no está en la petición JSON.
+    - 404 Not Found: Si no se encontró el id de la palabra a eliminar.
+    - 500 Internal Server Error: Si ocurre un error en el servidor.
+    """
+    try:
+        if not _id or not isinstance(_id, str):
+            return jsonify(ResponseMessages.err400), http.HTTPStatus.BAD_REQUEST
+
+        objResult = callMethod.fnDeletePalabraById(_id)
+
+        if not objResult or not isinstance(objResult, dict):
+            return jsonify(ResponseMessages.err404), http.HTTPStatus.NOT_FOUND
+
+        return jsonify(objResult)
+    except Exception as error:
+        logging.exception("Error en deletePalabraById: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
 
 
