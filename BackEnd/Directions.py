@@ -86,8 +86,8 @@ def PostPalabra() -> jsonify:
     """
     try:
         json_data = request.json
-        palabra = json_data.get('palabra', None)
-        video = json_data.get('video', None)
+        palabra = json_data.get('palabra')
+        video = json_data.get('video')
 
         if not palabra or not video or not isinstance(palabra, str) or not isinstance(video, str):
             return jsonify(ResponseMessages.err400), http.HTTPStatus.BAD_REQUEST
@@ -104,7 +104,7 @@ def PostPalabra() -> jsonify:
 
 
 @app.route('/api/general/updatePalabraById/<string:_id>', methods=['PUT'])
-def updatePalabraById(_id) -> jsonify:
+def updatePalabraById(_id: str) -> jsonify:
     """
     Actualiza una palabra en base a su id.
 
@@ -121,8 +121,8 @@ def updatePalabraById(_id) -> jsonify:
     """
     try:
         json_data = request.json
-        palabra = json_data.get('palabra', None)
-        video = json_data.get('video', None)
+        palabra = json_data.get('palabra')
+        video = json_data.get('video')
 
         if not palabra or not video or not isinstance(_id, str) or not isinstance(palabra, str) or not isinstance(video, str):
             return jsonify(ResponseMessages.err400), http.HTTPStatus.BAD_REQUEST
@@ -139,7 +139,7 @@ def updatePalabraById(_id) -> jsonify:
 
 
 @app.route('/api/general/deletePalabraById/<string:_id>', methods=['DELETE'])
-def deletePalabraById(_id) -> jsonify:
+def deletePalabraById(_id: str) -> jsonify:
     """
     Elimina una palabra en base a su id.
 
@@ -192,7 +192,7 @@ def GetAllUsuarios() -> jsonify:
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
 
 @app.route('/api/general/getUsuarioById/<string:_id>', methods=['GET'])
-def GetUsuarioById(_id) -> jsonify:
+def GetUsuarioById(_id: str) -> jsonify:
     """
     Recupera un usuario en base a su id.
 
@@ -236,10 +236,10 @@ def PostUsuario() -> jsonify:
     """
     try:
         json_data = request.json
-        nombre = json_data.get('nombre', None)
-        correo = json_data.get('correo', None)
-        username = json_data.get('username', None)
-        password = json_data.get('password', None)
+        nombre = json_data.get('nombre')
+        correo = json_data.get('correo')
+        username = json_data.get('username')
+        password = json_data.get('password')
 
         if not nombre or not username or not correo or not password or not isinstance(nombre, str) or not isinstance(username, str) or not isinstance(correo, str) or not isinstance(password, str):
             return jsonify(ResponseMessages.err400), http.HTTPStatus.BAD_REQUEST
@@ -255,7 +255,7 @@ def PostUsuario() -> jsonify:
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
 
 @app.route('/api/general/updateUsuarioById/<string:_id>', methods=['PUT'])
-def updateUsuarioById(_id) -> jsonify:
+def updateUsuarioById(_id: str) -> jsonify:
     """
     Actualiza un usuario en base a su id.
 
@@ -272,10 +272,10 @@ def updateUsuarioById(_id) -> jsonify:
     """
     try:
         json_data = request.json
-        nombre = json_data.get('nombre', None)
-        correo = json_data.get('correo', None)
-        username = json_data.get('username', None)
-        password = json_data.get('password', None)
+        nombre = json_data.get('nombre')
+        correo = json_data.get('correo')
+        username = json_data.get('username')
+        password = json_data.get('password')
 
         if not nombre or not username or not correo or not password or not isinstance(_id, str) or not isinstance(nombre, str) or not isinstance(username, str) or not isinstance(correo, str) or not isinstance(password, str):
             return jsonify(ResponseMessages.err400), http.HTTPStatus.BAD_REQUEST
@@ -291,7 +291,7 @@ def updateUsuarioById(_id) -> jsonify:
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
 
 @app.route('/api/general/deleteUsuarioById/<string:_id>', methods=['DELETE'])
-def deleteUsuarioById(_id) -> jsonify:
+def deleteUsuarioById(_id: str) -> jsonify:
     """
     Elimina un usuario en base a su id.
 

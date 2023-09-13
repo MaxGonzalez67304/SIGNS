@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, Response
 from pymongo import MongoClient
+from http import HTTPStatus
 from bson.objectid import ObjectId
 
 import os
@@ -33,9 +34,9 @@ def fnGetAllPalabras():
     try:
         cursor = dbConnection.palabras.find({}, PROYECTION)
 
-        objResult = [document for document in cursor]
+        objResult = list(cursor)
 
-        return {'intStatus': 200, 'strAnswer': objResult}
+        return {'intStatus': HTTPStatus.OK, 'strAnswer': objResult}
     except Exception as error:
         logging.exception("Error en fnGetAllPalabras: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
@@ -85,7 +86,7 @@ def fnPostPalabra(strPalabra, strVideo):
         jsnQuery = {"palabra": strPalabra, "video": strVideo}
         dbConnection.palabras.insert_one(jsnQuery)
 
-        return {'intStatus': 200, 'strAnswer': "Palabra insertada correctamente"}
+        return {'intStatus': http.HTTPStatus.OK, 'strAnswer': "Palabra insertada correctamente"}
     except Exception as error:
         logging.exception("Error en fnPostPalabra: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
@@ -112,7 +113,7 @@ def fnUpdatePalabraById(objectId, strPalabra, strVideo):
         cursor = {"$set": {"palabra": strPalabra, "video": strVideo}}
         dbConnection.palabras.update_one(jsnQuery, cursor)
 
-        return {'intStatus': 200, 'strAnswer': "Palabra actualizada correctamente"}
+        return {'intStatus': http.HTTPStatus.OK, 'strAnswer': "Palabra actualizada correctamente"}
     except Exception as error:
         logging.exception("Error en fnUpdatePalabra: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
@@ -139,7 +140,7 @@ def fnDeletePalabraById(objectId):
         if cursor.deleted_count == 0 or not cursor:
             return jsonify(ResponseMessages.err404), http.HTTPStatus.NOT_FOUND
 
-        return {'intStatus': 200, 'strAnswer': "Palabra eliminada correctamente"}
+        return {'intStatus': http.HTTPStatus.OK, 'strAnswer': "Palabra eliminada correctamente"}
     except Exception as error:
         logging.exception("Error en fnDeletePalabra: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
@@ -155,9 +156,9 @@ def fnGetAllUsuarios():
     try:
         cursor = dbConnection.usuarios.find({}, PROYECTION)
 
-        objResult = [document for document in cursor]
+        objResult = list(cursor)
 
-        return {'intStatus': 200, 'strAnswer': objResult}
+        return {'intStatus': http.HTTPStatus.OK, 'strAnswer': objResult}
     except Exception as error:
         logging.exception("Error en getAllUsuarios: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
@@ -207,7 +208,7 @@ def fnPostUsuario(strNombre, strCorreo, strUsername, strPassword):
         jsnQuery = {"nombre": strNombre, "correo": strCorreo, "username": strUsername, "password": strPassword}
         dbConnection.usuarios.insert_one(jsnQuery)
 
-        return {'intStatus': 200, 'strAnswer': "Usuario insertado correctamente"}
+        return {'intStatus': http.HTTPStatus.OK, 'strAnswer': "Usuario insertado correctamente"}
     except Exception as error:
         logging.exception("Error en fnPostUsuario: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
@@ -235,7 +236,7 @@ def fnUpdateUsuarioById(objectId, strNombre, strCorreo, strUsername, strPassword
         cursor = {"$set": {"nombre": strNombre, "correo": strCorreo, "username": strUsername, "password": strPassword}}
         dbConnection.usuarios.update_one(jsnQuery, cursor)
 
-        return {'intStatus': 200, 'strAnswer': "Usuario actualizado correctamente"}
+        return {'intStatus': http.HTTPStatus.OK, 'strAnswer': "Usuario actualizado correctamente"}
     except Exception as error:
         logging.exception("Error en fnUpdateUsuario: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
@@ -261,7 +262,7 @@ def fnDeleteUsuarioById(objectId):
         if cursor.deleted_count == 0 or not cursor:
             return jsonify(ResponseMessages.err404), http.HTTPStatus.NOT_FOUND
 
-        return {'intStatus': 200, 'strAnswer': "Usuario eliminado correctamente"}
+        return {'intStatus': http.HTTPStatus.OK, 'strAnswer': "Usuario eliminado correctamente"}
     except Exception as error:
         logging.exception("Error en fnDeleteUsuario: %s", error)
         return jsonify(ResponseMessages.err500), http.HTTPStatus.INTERNAL_SERVER_ERROR
