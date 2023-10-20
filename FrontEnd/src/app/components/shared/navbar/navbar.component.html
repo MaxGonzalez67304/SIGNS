@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg fixed-top sticky mx-auto" id="navbar">
     <div class="container">
-        <a href="index.html" class="navbar-brand me-4">
+        <a class="navbar-brand me-4" [routerLink]="['/home']">
             <img src="./../../../../assets/images/logo.jpg" alt="" height="80" />
         </a>
         <div class="navbar-header">
@@ -11,13 +11,13 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link sub-menu-item" href="index.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link sub-menu-item" [routerLink]="['/home']">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link sub-menu-item" href="palabras.html">Acerca de</a></li>
                 <li class="nav-item"><a class="nav-link sub-menu-item" href="palabras.html">Palabras</a></li>
                 <li class="nav-item"><a class="nav-link sub-menu-item" href="palabras.html">Alfabeto</a></li>
                 <li class="nav-item"><a class="nav-link sub-menu-item" href="lecciones.html">Lecciones</a></li>
-                <li class="nav-item"><a class="nav-link sub-menu-item" href="palabras.html">Contacto</a></li>
-                <li class="nav-item"><a class="nav-link sub-menu-item" href="palabras.html">Ingresar</a></li>
+                <li class="nav-item"><a class="nav-link sub-menu-item" [routerLink]="['/contacto']">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link sub-menu-item" [routerLink]="['/login']">Ingresar</a></li>
             </ul>
         </div>
     </div>
