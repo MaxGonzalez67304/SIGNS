@@ -11,6 +11,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { LoginComponent } from './components/login/login.component';
 import { PalabrasComponent } from './components/palabras/palabras.component';
 import { YoutubePipe } from './pipe/youtube.pipe';
+import { AlfabetoComponent } from './components/alfabeto/alfabeto.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { YoutubePipe } from './pipe/youtube.pipe';
     ContactoComponent,
     LoginComponent,
     PalabrasComponent,
-    YoutubePipe
+    YoutubePipe,
+    AlfabetoComponent
   ],
   imports: [
     BrowserModule,
