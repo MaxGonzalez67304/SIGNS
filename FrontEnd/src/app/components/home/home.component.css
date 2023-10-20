@@ -32,6 +32,10 @@ img{
     height: auto;
 }
 
+.title {
+    border-bottom: 2px solid #383840 !important;
+  }
+
 .carousel-control-prev-icon, .carousel-control-next-icon {
     background-color: #000D20; /* Cambia a tu color deseado */
   }

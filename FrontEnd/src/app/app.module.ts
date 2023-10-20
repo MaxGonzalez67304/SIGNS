@@ -10,6 +10,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { LoginComponent } from './components/login/login.component';
 import { PalabrasComponent } from './components/palabras/palabras.component';
+import { YoutubePipe } from './pipe/youtube.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PalabrasComponent } from './components/palabras/palabras.component';
     FooterComponent,
     ContactoComponent,
     LoginComponent,
-    PalabrasComponent
+    PalabrasComponent,
+    YoutubePipe
   ],
   imports: [
     BrowserModule,

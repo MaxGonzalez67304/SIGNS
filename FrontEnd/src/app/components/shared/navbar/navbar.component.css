@@ -1,78 +1,80 @@
 /* Estilos de la barra de navegación */
 .navbar {
-    padding: 18px 0;
-    margin-bottom: 0;
-    background-color: #000D20;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-  }
+  padding: 18px 0;
+  margin-bottom: 0;
+  background-color: #000D20;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
 
-  /* Estilos del botón "toggler" en la versión responsiva */
-  .navbar-toggler {
-    background-color: #FE9B2E; /* Color de fondo del botón */
+/* Estilos del botón "toggler" en la versión responsiva */
+.navbar-toggler {
+  background-color: #FE9B2E;
+  /* Color de fondo del botón */
 
-  }
+}
 
-  .navbar-toggler-icon {
-    background-color: #000; /* Color del ícono del botón */
-  }
+.navbar-toggler-icon {
+  background-color: #000;
+  /* Color del ícono del botón */
+}
 
-  /* Estilos de los elementos de menú */
-  .navbar .navbar-nav .nav-item .nav-link {
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 15px;
-    color: #FE9B2E;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    line-height: 40px;
-  }
+/* Estilos de los elementos de menú */
+.navbar .navbar-nav .nav-item .nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 15px;
+  color: #FE9B2E;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 40px;
+}
 
-  /* Estilos de los íconos desplegables */
-  .navbar .navbar-nav .nav-item .nav-link.dropdown-toggle::after {
-    content: "\F0140" !important;
-    font-family: "Material Design Icons" !important;
-    color: #FE9B2E;
-    font-size: 18px;
-    border: none;
-    vertical-align: middle;
-  }
+/* Estilos de los íconos desplegables */
+.navbar .navbar-nav .nav-item .nav-link.dropdown-toggle::after {
+  content: "\F0140" !important;
+  font-family: "Material Design Icons" !important;
+  color: #FE9B2E;
+  font-size: 18px;
+  border: none;
+  vertical-align: middle;
+}
 
-  /* Estilos de los enlaces desplegables al pasar el mouse */
-  .navbar .navbar-nav .nav-item .nav-link:hover,
-  .navbar .navbar-nav .nav-item .nav-link.active,
-  .navbar .navbar-nav .nav-item .nav-link:focus,
-  .navbar .navbar-nav .nav-item .nav-link:active {
-    color: #48CAC1;
-    transition: all 0.3s;
-  }
+/* Estilos de los enlaces desplegables al pasar el mouse */
+.navbar .navbar-nav .nav-item .nav-link:hover,
+.navbar .navbar-nav .nav-item .nav-link.active,
+.navbar .navbar-nav .nav-item .nav-link:focus,
+.navbar .navbar-nav .nav-item .nav-link:active {
+  color: #48CAC1;
+  transition: all 0.3s;
+}
 
-  /* Estilos de los íconos de enlaces desplegables al pasar el mouse */
-  .navbar .navbar-nav .nav-item .nav-link:hover.dropdown-toggle::after,
-  .navbar .navbar-nav .nav-item .nav-link.active.dropdown-toggle::after,
-  .navbar .navbar-nav .nav-item .nav-link:focus.dropdown-toggle::after,
-  .navbar .navbar-nav .nav-item .nav-link:active.dropdown-toggle::after {
-    color: #48CAC1;
-    transition: all 0.3s;
-  }
+/* Estilos de los íconos de enlaces desplegables al pasar el mouse */
+.navbar .navbar-nav .nav-item .nav-link:hover.dropdown-toggle::after,
+.navbar .navbar-nav .nav-item .nav-link.active.dropdown-toggle::after,
+.navbar .navbar-nav .nav-item .nav-link:focus.dropdown-toggle::after,
+.navbar .navbar-nav .nav-item .nav-link:active.dropdown-toggle::after {
+  color: #48CAC1;
+  transition: all 0.3s;
+}
 
-  /* Estilos del menú desplegable */
-  .navbar .navbar-nav .nav-item.dropdown .dropdown-menu {
-    background-color: #000D20;
-    padding-left: 20px;
-  }
+/* Estilos del menú desplegable */
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu {
+  background-color: #000D20;
+  padding-left: 20px;
+}
 
-  /* Estilos de los enlaces del menú desplegable */
-  .navbar .navbar-nav .nav-item.dropdown .dropdown-menu .nav-item .nav-link {
-    padding-left: 0;
-    line-height: 20px;
-    text-transform: none;
-    letter-spacing: inherit;
-  }
+/* Estilos de los enlaces del menú desplegable */
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu .nav-item .nav-link {
+  padding-left: 0;
+  line-height: 20px;
+  text-transform: none;
+  letter-spacing: inherit;
+}
 
-  /* Mostrar el menú desplegable al pasar el mouse o hacer clic */
-  .navbar .navbar-nav .nav-item.dropdown:hover .dropdown-menu,
-  .navbar .navbar-nav .nav-item.dropdown:active .dropdown-menu {
-    display: block;
-  }
+/* Mostrar el menú desplegable al pasar el mouse o hacer clic */
+.navbar .navbar-nav .nav-item.dropdown:hover .dropdown-menu,
+.navbar .navbar-nav .nav-item.dropdown:active .dropdown-menu {
+  display: block;
+}
