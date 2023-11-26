@@ -11,12 +11,22 @@
 /* Estilos del botón "toggler" en la versión responsiva */
 .navbar-toggler {
   background-color: #FE9B2E;
+  transition: 300ms;
+  /* Color de fondo del botón */
+
+}
+
+.navbar-toggler:hover {
+  background-color: #faaf5f;
+  transition: 300ms;
   /* Color de fondo del botón */
 
 }
 
 .navbar-toggler-icon {
   background-color: #000;
+  width: 25px;
+  padding: none;
   /* Color del ícono del botón */
 }
 

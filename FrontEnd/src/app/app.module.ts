@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PalabrasComponent } from './components/palabras/palabras.component';
 import { YoutubePipe } from './pipe/youtube.pipe';
 import { AlfabetoComponent } from './components/alfabeto/alfabeto.component';
+import { LeccionesComponent } from './components/lecciones/lecciones.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { AlfabetoComponent } from './components/alfabeto/alfabeto.component';
     LoginComponent,
     PalabrasComponent,
     YoutubePipe,
-    AlfabetoComponent
+    AlfabetoComponent,
+    LeccionesComponent,
+    
   ],
   imports: [
     BrowserModule,
