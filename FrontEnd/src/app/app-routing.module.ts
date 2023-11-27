@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PalabrasComponent } from './components/palabras/palabras.component';
 import { AlfabetoComponent } from './components/alfabeto/alfabeto.component';
 import { LeccionesComponent } from './components/lecciones/lecciones.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path:'login', component: LoginComponent},
   { path:'palabras', component: PalabrasComponent},
   { path:'alfabeto', component: AlfabetoComponent},
-  { path :'lecciones', component:LeccionesComponent}
+  { path :'lecciones', component:LeccionesComponent},
+  { path :'registro', component:RegistroComponent},
 ];
 
 @NgModule({

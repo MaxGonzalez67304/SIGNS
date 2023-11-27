@@ -1,6 +1,6 @@
 <div class="container">
     <h2 id="inicio">Iniciar Sesión</h2>
-    <form action="login.php" method="post">
+    <form action="login" method="post">
         <label  for="username">Usuario</label>
         <input type="text" name="username" id="username" required>
 
@@ -11,6 +11,6 @@
     </form>
 
     <div class="register-link">
-        ¿No tienes una cuenta? <a href="registro.html">Registrarse</a>
+        ¿No tienes una cuenta? <a [routerLink]="['/registro']">Registrarse</a>
     </div>
 </div>

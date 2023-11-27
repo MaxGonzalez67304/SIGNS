@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./lecciones.component.css']
 })
 export class LeccionesComponent {
-  selectL : any
+  selectL: any
   leccionSeleccionada: any = null; // Variable para almacenar la lección seleccionada
   mostrarLeccion = false; // Bandera para mostrar la pantalla de la lección
 
@@ -16,12 +16,30 @@ export class LeccionesComponent {
     this.mostrarLeccion = true;
   }
 
-  // Método para volver a la vista de las cards
+  getColor(progreso: number): string {
+    if (progreso < 25) {
+      return 'orange';
+    } else if (progreso < 50) {
+      return 'yellow';
+    } else if (progreso < 75) {
+      return 'orange';
+    } else if (progreso == 75) {
+      return 'lightblue';
+    } else {
+      return 'green';
+    }
+  }
+
+  getTextColor(progreso: number): string {
+    return progreso > 75 ? 'white' : 'black';
+  }
+
   volverALasCards() {
     this.leccionSeleccionada = null;
     this.mostrarLeccion = false;
   }
-   lecciones = [
+
+  lecciones = [
     {
       titulo: 'Expresiones',
       imagen: '../../../../assets/images/expresiones.jpg',
@@ -51,7 +69,7 @@ export class LeccionesComponent {
     {
       titulo: 'Colores',
       imagen: '../../../../assets/images/colores.jpg',
-      progreso: 70,
+      progreso: 75,
       descripcion: 'Descubre una paleta de colores en el idioma. Desde los colores primarios hasta los tonos más complejos, esta lección te ayudará a identificar y nombrar los colores en diversas situaciones.',
       preguntas: [
         '¿Cómo se dice "rojo" en este idioma?',
@@ -64,7 +82,7 @@ export class LeccionesComponent {
     {
       titulo: 'Animales',
       imagen: '../../../../assets/images/animales.webp',
-      progreso: 10,
+      progreso: 100,
       descripcion: 'Adéntrate en el mundo animal a través del idioma. Conocerás el vocabulario para describir una variedad de animales, desde mascotas hasta animales salvajes.',
       preguntas: [
         '¿Cómo se dice "perro" en este idioma?',
@@ -77,7 +95,7 @@ export class LeccionesComponent {
     {
       titulo: 'Medios de transporte',
       imagen: '../../../../assets/images/transportes.jpg',
-      progreso: 77,
+      progreso: 100,
       descripcion: 'Aprende el vocabulario relacionado con diferentes medios de transporte. Desde automóviles hasta transporte público, podrás hablar sobre cómo te mueves de un lugar a otro.',
       preguntas: [
         '¿Cómo se dice "coche" en este idioma?',
@@ -87,8 +105,5 @@ export class LeccionesComponent {
         '¿Puedes mencionar dos medios de transporte que se utilicen en el agua?'
       ]
     }
-    // Puedes agregar más objetos con títulos, imágenes, progreso, descripciones y preguntas
   ];
-  
-
 }

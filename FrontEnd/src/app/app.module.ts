@@ -13,6 +13,9 @@ import { PalabrasComponent } from './components/palabras/palabras.component';
 import { YoutubePipe } from './pipe/youtube.pipe';
 import { AlfabetoComponent } from './components/alfabeto/alfabeto.component';
 import { LeccionesComponent } from './components/lecciones/lecciones.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -26,12 +29,15 @@ import { LeccionesComponent } from './components/lecciones/lecciones.component';
     YoutubePipe,
     AlfabetoComponent,
     LeccionesComponent,
-    
+    RegistroComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

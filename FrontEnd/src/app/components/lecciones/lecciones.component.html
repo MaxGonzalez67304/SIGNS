@@ -1,17 +1,23 @@
 <div class="container">
-    <div class="row" *ngIf="!mostrarLeccion; else pantallaLeccion">
-      <div class="col-12 mt-4 clickeable" (click)="mostrarPantallaLeccion(leccion)" *ngFor="let leccion of lecciones; let i = index">
-        <div class="card mb-3 h-100">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img [src]="leccion.imagen" class="card-img" alt="Imagen de la lección">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body d-flex flex-column h-100">
-                <h2 class="card-title text-center">{{ leccion.titulo }}</h2>
-                <p class="card-text">{{ leccion.descripcion }}</p>
-                <div class="progress mt-auto">
-                  <div class="progress-bar" role="progressbar" [style.width]="leccion.progreso + '%'">{{ leccion.progreso }}%</div>
+  <div class="row" *ngIf="!mostrarLeccion; else pantallaLeccion">
+    <div class="col-12 mt-4 clickeable" (click)="mostrarPantallaLeccion(leccion)"
+      *ngFor="let leccion of lecciones; let i = index">
+      <div class="card mb-3 h-100">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img [src]="leccion.imagen" class="card-img" alt="Imagen de la lección">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body d-flex flex-column h-100">
+              <h2 class="card-title text-center tituloLeccion">{{ leccion.titulo }}</h2>
+              <p class="card-text">{{ leccion.descripcion }}</p>
+              <div class="progress mt-auto">
+                <div class="progress-bar"
+                     role="progressbar"
+                     [style.width]="leccion.progreso + '%'"
+                     [style.backgroundColor]="getColor(leccion.progreso)"
+                     [style.color]="getTextColor(leccion.progreso)">
+                  {{ leccion.progreso }}%
                 </div>
               </div>
             </div>
@@ -19,22 +25,22 @@
         </div>
       </div>
     </div>
-  
-    <ng-template #pantallaLeccion>
-        <div class="pantalla-leccion" *ngIf="leccionSeleccionada">
-          <button class="btn-volver" (click)="volverALasCards()">Volver</button>
-          <div class="leccion-info">
-            <h2 class="titulo-leccion">{{ leccionSeleccionada.titulo }}</h2>
-            <img [src]="leccionSeleccionada.imagen" alt="Imagen de la lección" class="imagen-leccion">
-            <p class="descripcion">{{ leccionSeleccionada.descripcion }}</p>
-            <h3 class="titulo-preguntas">Preguntas:</h3>
-            <ul class="lista-preguntas">
-              <li *ngFor="let pregunta of leccionSeleccionada.preguntas" class="pregunta-item">{{ pregunta }}</li>
-            </ul>
-            <!-- Aquí puedes añadir más contenido de la pantalla de la lección -->
-          </div>
-        </div>
-      </ng-template>
-      
   </div>
-  
+
+  <ng-template #pantallaLeccion>
+    <div class="pantalla-leccion" *ngIf="leccionSeleccionada">
+      <button class="btn-volver" (click)="volverALasCards()">Volver</button>
+      <div class="leccion-info">
+        <h2 class="titulo-leccion">{{ leccionSeleccionada.titulo }}</h2>
+        <img [src]="leccionSeleccionada.imagen" alt="Imagen de la lección" class="imagen-leccion">
+        <p class="descripcion">{{ leccionSeleccionada.descripcion }}</p>
+        <h3 class="titulo-preguntas">Preguntas:</h3>
+        <ul class="lista-preguntas">
+          <li *ngFor="let pregunta of leccionSeleccionada.preguntas" class="pregunta-item">{{ pregunta }}</li>
+        </ul>
+
+      </div>
+    </div>
+  </ng-template>
+
+</div>

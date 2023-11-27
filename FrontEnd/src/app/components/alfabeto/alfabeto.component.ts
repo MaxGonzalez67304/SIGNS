@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./alfabeto.component.css']
 })
 export class AlfabetoComponent {
-  rutaBase = '../../../assets/images/Alfabeto/';
+  rutaBase = '../../../assets/images//alfabeto/';
 
   cardsAlfabeto: { src: string; letra: string }[] = [
     { src: this.rutaBase + 'A.jpg', letra: 'A' },
